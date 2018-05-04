@@ -1,4 +1,10 @@
 <h2>Movies</h2>
+
+<div>
+  <input #searchPhrase />
+  <button (click)="search(searchPhrase.value)">search</button>
+</div>
+
 <table>
   <tr>
     <th>Title</th>

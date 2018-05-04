@@ -21,4 +21,10 @@ export class MoviesComponent implements OnInit {
       this.movies = movies;
     });
   }
+
+  search(searchPhrase: string) {
+    this.moviesService.searchMovies(searchPhrase).subscribe(movies => {
+      this.movies = movies;
+    });
+  }
 }

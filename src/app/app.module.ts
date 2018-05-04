@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MoviesComponent } from './movies/movies.component';
+import { HttpErrorHandler } from './http-error-handler.service';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { MoviesComponent } from './movies/movies.component';
     HttpClientModule
   ],
   providers: [
+    HttpErrorHandler
   ],
   bootstrap: [AppComponent]
 })
