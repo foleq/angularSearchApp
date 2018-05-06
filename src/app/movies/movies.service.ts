@@ -4,19 +4,19 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
 
-import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
+import { HttpErrorHandler, HandleError } from '../services/http-error-handler.service';
 import { IMovie } from './movie.model';
+
+const searchUrl: string = 'http://localhost:3000/api/search';
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+  })
+};
 
 @Injectable()
 export class MoviesService {
-  private moviesUrl: string = 'http://localhost:3000/api/movies';
-  private searchUrl: string = 'http://localhost:3000/api/search';
   private handleError: HandleError;
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-    })
-  };
 
   constructor(private http: HttpClient,
     httpErrorHandler: HttpErrorHandler) {
@@ -24,19 +24,20 @@ export class MoviesService {
   }
 
   getMovies() : Observable<IMovie[]> {
-    return this.http.get<IMovie[]>(this.moviesUrl)
-      .pipe(
-        catchError(this.handleError<IMovie[]>('getMovies', []))
-      );
+    return this.searchMovies('getMovies', '');
   }
 
-  searchMovies(searchPhrase: string): Observable<IMovie[]> {
+  search(searchPhrase: string): Observable<IMovie[]> {
+    return this.searchMovies('searchMovies', searchPhrase);
+  }
+
+  private searchMovies(operation: string, searchPhrase: string){
     const body = {
       searchPhrase: searchPhrase
     };
-    return this.http.post<IMovie[]>(this.searchUrl, body, this.httpOptions)
+    return this.http.post<IMovie[]>(searchUrl, body, httpOptions)
       .pipe(
-        catchError(this.handleError<IMovie[]>('searchMovies', []))
+        catchError(this.handleError<IMovie[]>(operation, []))
       );
   }
 }

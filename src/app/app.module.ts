@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MoviesComponent } from './movies/movies.component';
-import { HttpErrorHandler } from './http-error-handler.service';
+import { HttpErrorHandler } from './services/http-error-handler.service';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { HttpErrorHandler } from './http-error-handler.service';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [

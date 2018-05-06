@@ -4,3 +4,6 @@ td, th {
 th {
     text-align: left;
 }
+select {
+    width: 200px;
+}
