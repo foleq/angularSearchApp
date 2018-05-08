@@ -1,4 +1,5 @@
-import { Injectable } from "@angular/core";
+import { Observable } from 'rxjs/Observable';
+import { Injectable } from '@angular/core';
 
 export interface IConfig {
     heroesUrl: string;
@@ -8,9 +9,10 @@ export interface IConfig {
 export interface IFilter {
     name: string;
     values: string[];
+    availableValues: string[];
     type: IFilterType;
     filterKind: IFilterKind;
-    isDefault?: boolean;
+    isSelected?: boolean;
 }
 
 export enum IFilterType {
@@ -28,30 +30,34 @@ export enum IFilterKind {
 export class ConfigService {
 
     getAllFilters(): IFilter[] {
-        //TODO: it could come from server?
+        // TODO: it could come from server?
         return [
             {
-                name: "title",
+                name: 'title',
                 values: [],
+                availableValues: ['test 1', 'test 2', 'test 3', 'test 4'],
                 type: IFilterType.singleTextValue,
                 filterKind: IFilterKind.include,
-                isDefault: true
+                isSelected: true
             },
             {
-                name: "country",
+                name: 'country',
                 values: [],
+                availableValues: ['Poland', 'Germany', 'USA'],
                 type: IFilterType.singleTextValue,
                 filterKind: IFilterKind.include
             },
             {
-                name: "filter_1",
+                name: 'filter_1',
                 values: [],
+                availableValues: ['f 1', 'f 2'],
                 type: IFilterType.singleTextValue,
                 filterKind: IFilterKind.include
             },
             {
-                name: "filter_2",
+                name: 'filter_2',
                 values: [],
+                availableValues: ['xxx', 'yyy'],
                 type: IFilterType.singleTextValue,
                 filterKind: IFilterKind.include
             }

@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MoviesComponent } from './movies/movies.component';
 import { HttpErrorHandler } from './services/http-error-handler.service';
+import { MySelectComponent } from './my-select/my-select.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MoviesComponent
-  ],
+    MoviesComponent,
+    MySelectComponent
+],
   imports: [
     BrowserModule,
     FormsModule,

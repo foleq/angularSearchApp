@@ -7,7 +7,7 @@ import { catchError } from 'rxjs/operators';
 import { HttpErrorHandler, HandleError } from '../services/http-error-handler.service';
 import { IMovie } from './movie.model';
 
-const searchUrl: string = 'http://localhost:3000/api/search';
+const searchUrl = 'http://localhost:3000/api/search';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
@@ -23,7 +23,7 @@ export class MoviesService {
       this.handleError = httpErrorHandler.createHandleError('MoviesService');
   }
 
-  getMovies() : Observable<IMovie[]> {
+  getMovies(): Observable<IMovie[]> {
     return this.searchMovies('getMovies', '');
   }
 
@@ -31,7 +31,7 @@ export class MoviesService {
     return this.searchMovies('searchMovies', searchPhrase);
   }
 
-  private searchMovies(operation: string, searchPhrase: string){
+  private searchMovies(operation: string, searchPhrase: string) {
     const body = {
       searchPhrase: searchPhrase
     };

@@ -7,14 +7,21 @@
 
 <div>
   <div *ngFor="let selectedFilter of selectedFilters; let i=index">
-      <select [(ngModel)]="selectedFilter.filterKind">
-          <option [value]="0" [selected]="selectedFilter.filterKind == 0">Include</option>
-          <option [value]="1" [selected]="selectedFilter.filterKind == 1">Exclude</option>
-       </select>
-       <select [(ngModel)]="selectedFilters[i]" (ngModelChange)="filterChanged(selectedFilter, $event)">
-         <option *ngFor="let filter of getAvailableFilters(selectedFilter)" [ngValue]="filter">{{filter.name}}</option>
-       </select>
+      <app-my-select
+        [items]="filterKindSelectItems"
+        [selectedItem]="getFilterKindSelectItem(selectedFilter)"
+        (itemSelected)="filterKindChanged($event, selectedFilter)">
+      </app-my-select>
+      <app-my-select
+        [items]="filterSelectItems$ | async"
+        [selectedItem]="getFilterSelectItem(selectedFilter)"
+        (itemSelected)="filterChanged($event, i, selectedFilter)">
+      </app-my-select>
+      <app-my-select
+        [items]="selectedFiltersValues$[i] | async">
+      </app-my-select>
        {{selectedFilter.name}}
+       {{selectedFilter.filterKind}}
        <button (click)="removeFilter(selectedFilter)">Remove</button>
   </div>
   <button [hidden]="hasFilterToBeAdded() === false" (click)="addFilter()">Add filter</button>

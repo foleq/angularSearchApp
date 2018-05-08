@@ -11,7 +11,7 @@ import { MoviesService } from './movies/movies.service';
 export class AppComponent implements OnInit {
   title = 'App title';
 
-  constructor(){
+  constructor() {
   }
 
   ngOnInit(): void {
